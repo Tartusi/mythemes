@@ -186,17 +186,7 @@ prompt_status() {
 
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
-prompt_newline() {
-  if [[ -n $CURRENT_BG ]]; then
-    echo -n "%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR
-%{%k%F{blue}%}$SEGMENT_SEPARATOR"
-  else
-    echo -n "%{%k%}"
-  fi
 
-  echo -n "%{%f%}"
-  CURRENT_BG=''
-}
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -207,7 +197,6 @@ build_prompt() {
   prompt_git
   prompt_hg
   prompt_end
-  prompt_newline()
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
